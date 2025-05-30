@@ -1,0 +1,13 @@
+services:
+
+  redis:
+    image: redis
+    container_name: redis-server2
+    ports:
+      - "6379:6379"
+    restart: always
+  assignment:
+    image: ${DOCKER_REGISTRY-}assignment
+    build:
+      context: .
+      dockerfile: Assignment\Dockerfile
