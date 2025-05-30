@@ -22,15 +22,15 @@ namespace Assignment.Application.Commands
     public class LoginCommandHandler : IRequestHandler<LoginCommand, Result>
     {
         private readonly IFinDbContext _context;
-        private readonly IMediator _mediator;         
+           
         private readonly IOtpService _otpService;
         private readonly IBroadcastHandler _broadcastHandler;
-        public LoginCommandHandler(IFinDbContext context, IMediator mediator, IPasswordHash passwordHash,
+        public LoginCommandHandler(IFinDbContext context, 
                                         IOtpService otpService,
                                        IBroadcastHandler broadcastHandler)
         {
             _context = context;
-            _mediator = mediator;
+     
            
             _otpService = otpService;
             _broadcastHandler = broadcastHandler;

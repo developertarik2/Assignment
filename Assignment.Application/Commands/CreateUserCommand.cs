@@ -69,13 +69,7 @@ namespace Assignment.Application.Commands
                 }
 
 
-                //string newPasswordHash = string.Empty;
-                //string newPasswordSaltHash = string.Empty;
-
-
-
-                //_passwordHash.CreateHash(request.Password, ref newPasswordHash,
-                //  ref newPasswordSaltHash);
+              
 
 
 
@@ -85,8 +79,7 @@ namespace Assignment.Application.Commands
                     {
                         IsActive = true,
 
-                        //PasswordHash = newPasswordHash,
-                        //PasswordSalt = newPasswordSaltHash,
+                    
                         EmailVerified = false,
                         PhoneVerified = false,
                         CustomerName = request.Name,

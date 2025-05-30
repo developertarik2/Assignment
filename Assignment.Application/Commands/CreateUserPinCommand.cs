@@ -1,23 +1,14 @@
 ﻿using Assignment.Application.Interfaces;
 using Assignment.Application.Models.Dtos;
-using Assignment.Domain.Entities;
-using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assignment.Application.Commands
 {
     public class CreateUserPinCommand : IRequest<Result>
     {
-        public string Name { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
-        public string ICNumber { get; set; } = string.Empty;
-        public string Phone { get; set; } = string.Empty;
+  
+        public string ICNumber { get; set; } = string.Empty;   
         public string Pin { get; set; } = string.Empty;
         public string ConfirmPin { get; set; } = string.Empty;
 
@@ -25,22 +16,19 @@ namespace Assignment.Application.Commands
 
     public class CreateUserPinCommandHandler : IRequestHandler<CreateUserPinCommand, Result>
     {
-        private readonly IFinDbContext _context;
-        private readonly IMediator _mediator;
+        private readonly IFinDbContext _context;  
         private readonly IPasswordHash _passwordHash;
-        private readonly IValidator<CreateUserPinCommand> _validator;
-        private readonly IOtpService _otpService;
-        private readonly IBroadcastHandler _broadcastHandler;
-        public CreateUserPinCommandHandler(IFinDbContext context, IMediator mediator, IPasswordHash passwordHash,
-                                        IPasswordHash passwordNewHash, IOtpService otpService,
-                                        IValidator<CreateUserPinCommand> validator, IBroadcastHandler broadcastHandler)
+    
+     
+        public CreateUserPinCommandHandler(IFinDbContext context,  IPasswordHash passwordHash
+                                     
+                                     )
         {
             _context = context;
-            _mediator = mediator;
+      
             _passwordHash = passwordHash;
-            _validator = validator;
-            _otpService = otpService;
-            _broadcastHandler = broadcastHandler;
+        
+  
         }
         public async Task<Result> Handle(CreateUserPinCommand request, CancellationToken cancellation)
         {
@@ -56,17 +44,8 @@ namespace Assignment.Application.Commands
                 }
 
                 var checkUserExist = await _context.Users
-               //.AsNoTracking()
-               .FirstOrDefaultAsync(q => q.ICNumber == request.ICNumber, cancellationToken: cancellation);
+                 .FirstOrDefaultAsync(q => q.ICNumber == request.ICNumber, cancellationToken: cancellation);
 
-                //if (checkUserExist)
-                //{
-                //    result.HasError = false;
-                //    result.Messages.Add("Account already existed!");
-                //    result.Messages.Add("There is account registrered with this IC Number, Please Login to continue!");
-
-                //    return result;
-                //}
 
 
                 string newPasswordHash = string.Empty;

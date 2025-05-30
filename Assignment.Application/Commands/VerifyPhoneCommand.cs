@@ -22,17 +22,14 @@ namespace Assignment.Application.Commands
 
     public class VerifyPhoneCommandHandler : IRequestHandler<VerifyPhoneCommand, Result>
     {
-        private readonly IFinDbContext _context;
-        private readonly IMediator _mediator;         
+         
         private readonly IOtpService _otpService;
         private readonly IBroadcastHandler _broadcastHandler;
-        public VerifyPhoneCommandHandler(IFinDbContext context, IMediator mediator, IPasswordHash passwordHash,
+        public VerifyPhoneCommandHandler(
                                         IOtpService otpService,
                                        IBroadcastHandler broadcastHandler)
         {
-            _context = context;
-            _mediator = mediator;
-           
+            
             _otpService = otpService;
             _broadcastHandler = broadcastHandler;
         }
